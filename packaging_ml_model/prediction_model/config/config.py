@@ -11,6 +11,7 @@ DATAPATH:str = os.path.join(PACKAGE_ROOT, "data")
 TRAIN_FILE:str = "loan-train.csv"
 TEST_FILE:str = "loan-test.csv"
 
+MODEL_NAME = "Classification.pkl"
 SAVE_MODEL_PATH:str = os.path.join(PACKAGE_ROOT, "trained_models")
 
 # Final features used in the Model
