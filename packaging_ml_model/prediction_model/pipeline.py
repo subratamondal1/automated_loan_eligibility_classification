@@ -17,3 +17,17 @@ classification_pipeline = Pipeline(
         ("LogisticRegression", LogisticRegression(random_state=0))
     ]
 )
+
+"""
+A machine learning pipeline for classification tasks.
+
+The pipeline performs the following steps:
+1. Imputes missing values in numerical features using mean imputation.
+2. Imputes missing values in categorical features using mode imputation.
+3. Combines two columns into one by adding their values.
+4. Drops unnecessary columns from the input data.
+5. Encodes categorical features as numerical values based on their frequency in the input data.
+6. Applies logarithmic transformations to numerical features with a positively skewed distribution.
+7. Scales numerical features to a fixed range using Min-Max scaling.
+8. Trains a logistic regression model on the preprocessed data.
+"""

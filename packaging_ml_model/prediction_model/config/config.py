@@ -5,6 +5,7 @@ import prediction_model  # Import the directory itself where we are working
 
 # Access the Path of the Root Directory
 PACKAGE_ROOT_PATH = pathlib.Path(prediction_model.__file__).resolve().parent  # Get the root path of the package
+# PACKAGE_ROOT_PATH = pathlib.Path(os.path.abspath(__file__)).resolve().parent.parent
 
 DATA_PATH:str = os.path.join(PACKAGE_ROOT_PATH, "data")  # Path to the data directory
 
@@ -15,7 +16,7 @@ MODEL_NAME:str = "Classification.pkl"  # Name of the saved model file
 SAVE_MODEL_PATH:str= os.path.join(PACKAGE_ROOT_PATH, "trained_models")  # Path to the directory where the trained model will be saved
 
 # Final features used in the Model
-FEATURES:list[str] = ['ApplicantIncome', 'Credit_History', 'Dependents', 'Education', 'Gender', 'LoanAmount', 'Loan_Amount_Term', 'Married', 'Property_Area', 'Self_Employed']
+FEATURES:list[str] = ['ApplicantIncome', 'CoapplicantIncome', 'Credit_History', 'Dependents', 'Education', 'Gender', 'LoanAmount', 'Loan_Amount_Term', 'Married', 'Property_Area', 'Self_Employed']
 
 # Numerical Features
 NUM_FEATURES:list[str] = ['ApplicantIncome', 'LoanAmount', 'Loan_Amount_Term']
@@ -28,7 +29,7 @@ TARGET_FEATURE:str = "Loan_Status"  # Target variable to predict
 # Features that we need to Encode
 FEATURES_TO_ENCODE:list[str] = ['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed', 'Credit_History', 'Property_Area']
 
-FEATURES_TO_MODIFY:str = "ApplicantIncome"  # Feature to modify
+FEATURES_TO_MODIFY:list[str] = ["ApplicantIncome"]  # Feature to modify
 FEATURES_TO_ADD:str = "CoapplicantIncome"  # Feature to add
 
 DROP_FEATURES:list[str] = ["CoapplicantIncome"]  # Features to drop

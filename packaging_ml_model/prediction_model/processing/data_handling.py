@@ -43,17 +43,25 @@ def save_pipeline(pipeline_to_save) -> None:
     joblib.dump(value=pipeline_to_save, filename=savepath)
     print(f"Model has been saved: {config.MODEL_NAME}")
 
-def load_pipeline() -> Pipeline:
+def load_pipeline(pipeline_to_load: str) -> Pipeline:
     """
-    De-Serialization: Load the Model.
+    Load a saved scikit-learn Pipeline object from disk.
+
+    This function loads a saved Pipeline object from the specified file path using joblib.
+
+    Parameters
+    ----------
+    pipeline_to_load : str
+        The name of the saved Pipeline object to load.
 
     Returns
     -------
     Pipeline
         The loaded scikit-learn Pipeline object.
     """
-    savepath: str = os.path.join(config.SAVE_MODEL_PATH, config.MODEL_NAME)
+    savepath: str = os.path.join(config.SAVE_MODEL_PATH, pipeline_to_load)
     loaded_model = joblib.load(filename=savepath)
-    print(f"Model has been loaded: {config.MODEL_NAME}")
+    print(f"Model has been loaded: {pipeline_to_load}")
     return loaded_model
+
 

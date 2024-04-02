@@ -203,8 +203,8 @@ class CombineColumns(BaseEstimator, TransformerMixin):
         The name of the column in the input data whose values will be added to
         `columnA`.
     """
-    def __init__(self, columnA: str, columnB: str) -> None:
-        self.columnA: str = columnA
+    def __init__(self, columnA: list[str], columnB: str) -> None:
+        self.columnA: list[str] = columnA
         self.columnB: str = columnB
         super().__init__()
 
@@ -243,7 +243,8 @@ class CombineColumns(BaseEstimator, TransformerMixin):
             The combined input data with the updated values in `columnA`.
         """
         X = X.copy()
-        X[self.columnA] += X[self.columnB]
+        for col in self.columnA:
+            X[col] += X[col]
         return X
 
     
