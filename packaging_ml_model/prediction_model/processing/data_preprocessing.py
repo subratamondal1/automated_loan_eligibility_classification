@@ -1,5 +1,6 @@
 from typing import Self
 
+import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
@@ -149,7 +150,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None) -> 'DropColumns':
         """
-        No need of learning and hence returning 'self'.
+        No need to learn anything from the data, so simply return the 'self' object.
 
         Parameters
         ----------
@@ -209,7 +210,7 @@ class CombineColumns(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None) -> 'CombineColumns':
         """
-        No need of learning and hence returning 'self'.
+        No need to learn anything from the data, so simply return the 'self' object.
 
         Parameters
         ----------
@@ -310,4 +311,60 @@ class CustomLabelEncoder(BaseEstimator, TransformerMixin):
         X = X.copy()
         for col in self.categorical_features:
             X[col] = X[col].map(self.label_dict_[col])
+        return X
+    
+class LogTransform(BaseEstimator, TransformerMixin):
+    """
+    Applies logarithmic transformation to the specified features in the dataset.
+
+    This class is used to transform features with a positively skewed distribution to a more normal distribution, which can improve the performance of some machine learning algorithms.
+    """
+    def __init__(self, numerical_features: list[str]) -> None:
+        """
+        Initialize the LogTransform object with the specified numerical_features.
+
+        Parameters
+        ----------
+        numerical_features : list[str]
+            List of feature names to apply logarithmic transformation.
+        """
+        self.numerical_features: list[str] = numerical_features
+        super().__init__()
+
+    def fit(self, X, y=None) -> 'LogTransform':
+        """
+        No need to learn anything from the data, so simply return the 'self' object.
+
+        Parameters
+        ----------
+        X : pd.DataFrame
+            The input dataset.
+        y : None
+            Ignored in this transformer.
+
+        Returns
+        -------
+        self : LogTransform
+            The fitted LogTransform object.
+        """
+        return self
+
+    def transform(self, X) -> pd.DataFrame:
+        """
+        Apply logarithmic transformation to the specified numerical_features in the dataset.
+
+        Parameters
+        ----------
+        X : pd.DataFrame
+            The input dataset.
+
+        Returns
+        -------
+        pd.DataFrame
+            The transformed dataset with logarithmic transformation applied to the specified numerical_features.
+        """
+        import numpy as np
+        X = X.copy()
+        for col in self.numerical_features:
+            X[col] = np.log(X[col])
         return X
