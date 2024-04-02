@@ -9,15 +9,6 @@ from .processing.data_handling import load_pipeline, load_dataset
 
 classification_pipeline:Pipeline = load_pipeline(pipeline_to_load=config.MODEL_NAME)
 
-# def generate_prediction(data_csv_path) -> dict:
-#     df:pd.DataFrame = pd.read_csv(filepath_or_buffer=data_csv_path)
-#     test_X:pd.DataFrame = df[config.FEATURES]
-#     y_pred = classification_pipeline.predict(X=test_X)
-#     result = np.where(y_pred == 1, "Y", "N")
-#     return {
-#         "predictions":result
-#     }
-
 def generate_prediction() -> None:
     test_data:pd.DataFrame = load_dataset(filename=config.TEST_FILE)
     y_pred = classification_pipeline.predict(X=test_data[config.FEATURES])
