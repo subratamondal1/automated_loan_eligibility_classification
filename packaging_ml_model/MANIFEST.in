@@ -1,0 +1,14 @@
+include *.py
+include *.txt
+include *.md
+
+recursive-include ./packaging_ml_model/*
+
+include ./packaging_ml_model/prediction_model/data/*.csv
+include ./packaging_ml_model/prediction_model/trained_models/*.pkl 
+include ./packaging_ml_model/prediction_model/VERSION
+
+include packaging_ml_model/tests/*
+
+recursive-exclude *__pycache__
+recursive-exclude * *.py[co]
