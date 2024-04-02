@@ -66,7 +66,7 @@ class MeanImputer(BaseEstimator, TransformerMixin):
         """
         X = X.copy()
         for col in self.numerical_features:
-            X[col].fillna(self.mean_dict_[col], inplace=True)
+            X[col] = X[col].fillna(self.mean_dict_[col])
         return X
 
 class ModeImputer(BaseEstimator, TransformerMixin):
@@ -129,7 +129,7 @@ class ModeImputer(BaseEstimator, TransformerMixin):
         """
         X = X.copy()
         for col in self.categorical_features:
-            X[col].fillna(self.mode_dict_[col], inplace=True)
+            X[col] = X[col].fillna(self.mode_dict_[col])
         return X
 
     
@@ -364,8 +364,9 @@ class LogTransform(BaseEstimator, TransformerMixin):
         pd.DataFrame
             The transformed dataset with logarithmic transformation applied to the specified numerical_features.
         """
-        import numpy as np
         X = X.copy()
         for col in self.numerical_features:
+            # Replace non-positive values with a small positive value
+            X[col] = X[col].replace([np.inf, -np.inf, 0], np.finfo(dtype=float).eps)
             X[col] = np.log(X[col])
         return X
