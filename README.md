@@ -23,3 +23,20 @@ The data corresponds to a set of financial requests associated with individuals.
 | **Credit\_History** | credit history meets guidelines |
 | **Property\_Area** | Urban/ Semi Urban/ Rural |
 | **Loan\_Status** | Loan approved (Y/N) |
+
+<h2 align="left">MLflow Local Setup</h2>
+
+<img src="https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png" width=200/>
+
+Run the below commands in the terminal one by one.
+
+```bash
+# To install the 'mlflow' package
+1. pip install mlflow
+```
+
+Run the below commands to launch the server @ [`http://127.0.0.1:5000`](http://127.0.0.1:5000)
+```bash
+# To launch the 'mlflow ui' @ http://127.0.0.1:5000
+2. mlflow ui
+```
