@@ -26,7 +26,7 @@ if __name__ == "__main__":
     args.add_argument("--parameter2", "-p2", type=int, default=10)
     parsed_args = args.parse_args()
 
-    mlflow.set_tracking_uri(uri="http://127.0.0.1:8080")
+    mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
 
     # accessing the user given input
     main(input1=parsed_args.parameter1, input2=parsed_args.parameter2)
